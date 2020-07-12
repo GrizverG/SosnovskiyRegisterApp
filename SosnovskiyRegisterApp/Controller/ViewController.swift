@@ -10,11 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private lazy var RegistrationView: UIView = {
+        let registrationView = UIView()
+        view.addSubview(registrationView)
+        
+        return registrationView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
+    func checkIfLoggedIn() {
+        
+    }
 
 }
 
