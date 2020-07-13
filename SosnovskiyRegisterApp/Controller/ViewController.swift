@@ -10,21 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private lazy var RegistrationView: UIView = {
-        let registrationView = UIView()
-        view.addSubview(registrationView)
-        
-        return registrationView
-    }()
+    // MARK: - Properties
+    private var credentialManager = CredentialManager()
+    private weak var profileView: ProfileView!
     
+    // MARK: - View did load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        resetView()
     }
+}
 
-    func checkIfLoggedIn() {
-        
+// MARK: - Reload view delegate
+extension ViewController: reloadViewDelegate {
+    func resetView() {
+        if self.profileView != nil {
+            self.profileView.removeFromSuperview()
+        }
+        var profileView = ProfileView()
+        if credentialManager.hasProfile() {
+            let login = credentialManager.getLogin()
+            let password = credentialManager.getPassword()
+            profileView = ProfileView(login, password)
+        }
+        profileView.reloadDelegate = self
+        profileView.credentialsDelegate = credentialManager
+        view.addSubview(profileView)
+        profileView.pin(superView: view)
+        self.profileView = profileView
     }
-
 }
 
