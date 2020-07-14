@@ -23,7 +23,7 @@ final class ProfileView: UIView {
     // MARK: - Constants
     private enum Constants {
         static let surraunding = 70
-        static let fieldHight = 70
+        static let fieldHeight = 70
         static let distance = 90
     }
     
@@ -88,7 +88,7 @@ final class ProfileView: UIView {
         loginLabel.addToTop(anchor: topAnchor, multiplier: Distance)
         loginLabel.addToLeft(anchor: leadingAnchor, multiplier: Constants.surraunding)
         loginLabel.addToRight(anchor: trailingAnchor, multiplier: -Constants.surraunding)
-        loginLabel.height(Constants.fieldHight)
+        loginLabel.height(Constants.fieldHeight)
         loginLabel.text = "Login:"
         loginLabel.font = UIFont.boldSystemFont(ofSize: 22)
         loginLabel.numberOfLines = 2
@@ -113,7 +113,7 @@ final class ProfileView: UIView {
         loginTextField.addToTop(anchor: topAnchor, multiplier: Distance)
         loginTextField.addToLeft(anchor: leadingAnchor, multiplier: Constants.surraunding)
         loginTextField.addToRight(anchor: trailingAnchor, multiplier: -Constants.surraunding)
-        loginTextField.height(Constants.fieldHight)
+        loginTextField.height(Constants.fieldHeight)
         self.loginTextField = loginTextField
     }
     
@@ -127,7 +127,7 @@ final class ProfileView: UIView {
         passwordLabel.addToTop(anchor: topAnchor, multiplier: Distance)
         passwordLabel.addToLeft(anchor: leadingAnchor, multiplier: Constants.surraunding)
         passwordLabel.addToRight(anchor: trailingAnchor, multiplier: -Constants.surraunding)
-        passwordLabel.height(Constants.fieldHight)
+        passwordLabel.height(Constants.fieldHeight)
         passwordLabel.text = "Password:"
         passwordLabel.font = UIFont.boldSystemFont(ofSize: 22)
         passwordLabel.numberOfLines = 2
@@ -151,7 +151,7 @@ final class ProfileView: UIView {
         pwTextField.addToTop(anchor: topAnchor, multiplier: Distance)
         pwTextField.addToLeft(anchor: leadingAnchor, multiplier: Constants.surraunding)
         pwTextField.addToRight(anchor: trailingAnchor, multiplier: -Constants.surraunding)
-        pwTextField.height(Constants.fieldHight)
+        pwTextField.height(Constants.fieldHeight)
         self.passwordTextField = pwTextField
     }
     
@@ -170,7 +170,7 @@ final class ProfileView: UIView {
         signInButton.addToBottom(anchor: bottomAnchor, multiplier: -Constants.distance)
         signInButton.addToLeft(anchor: leadingAnchor, multiplier: Constants.surraunding)
         signInButton.addToRight(anchor: trailingAnchor, multiplier: -Constants.surraunding)
-        signInButton.height(Constants.fieldHight)
+        signInButton.height(Constants.fieldHeight)
         self.signInButton = signInButton
     }
     
@@ -199,7 +199,7 @@ final class ProfileView: UIView {
         signOutButton.addToBottom(anchor: bottomAnchor, multiplier: -Constants.distance)
         signOutButton.addToLeft(anchor: leadingAnchor, multiplier: Constants.surraunding)
         signOutButton.addToRight(anchor: trailingAnchor, multiplier: -Constants.surraunding)
-        signOutButton.height(Constants.fieldHight)
+        signOutButton.height(Constants.fieldHeight)
         self.signOutButton = signOutButton
     }
     
