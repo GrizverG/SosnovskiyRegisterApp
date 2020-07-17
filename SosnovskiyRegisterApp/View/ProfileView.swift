@@ -9,12 +9,12 @@
 import UIKit
 import Foundation
 
-protocol saveCredentialsDelegate: class {
+protocol SaveCredentialsDelegate: class {
     func passCredentials(_ login: String, _ password: String)
     func removeCredentials()
 }
 
-protocol reloadViewDelegate: class {
+protocol ReloadViewDelegate: class {
     func resetView()
 }
 
@@ -28,8 +28,8 @@ final class ProfileView: UIView {
     }
     
     // MARK: Delegate
-    weak var credentialsDelegate: saveCredentialsDelegate?
-    weak var reloadDelegate: reloadViewDelegate?
+    weak var credentialsDelegate: SaveCredentialsDelegate?
+    weak var reloadDelegate: ReloadViewDelegate?
     
     //
     // MARK: - Properties
@@ -58,24 +58,26 @@ final class ProfileView: UIView {
         setupPasswordLabel()
         setupPasswordTextField()
         setupSignInButton()
-    }
-    
-    // MARK: - Profile view init
-    init(_ first: String, _ second: String) {
-        super.init(frame: .zero)
-        backgroundColor = .darkGray
-        setupLoginLabel()
-        setupPasswordLabel()
-        loginLabel.textAlignment = .center
-        passwordLabel.textAlignment = .center
-        loginLabel.text = first
-        passwordLabel.text = second
-        numberOfElements = 4
         setupSignOutButton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Public functions
+    func configure(_ first: String?, _ second: String?) {
+        var needShowSignIn = true
+        if let first = first, let second = second {
+            loginLabel.textAlignment = .center
+            passwordLabel.textAlignment = .center
+            loginLabel.text = first
+            passwordLabel.text = second
+            numberOfElements = 4
+            needShowSignIn = false
+            loginTextField.isHidden = true
+        }
+        manageAuthButtons(needShowSignIn)
     }
     
     // MARK: - Login label
@@ -174,8 +176,13 @@ final class ProfileView: UIView {
         self.signInButton = signInButton
     }
     
+    private func manageAuthButtons(_ needShowSignIn: Bool) {
+        signInButton.isHidden = !needShowSignIn
+        signOutButton.isHidden = needShowSignIn
+    }
+    
     // MARK: Sign in selector
-    @objc func signIn(sender: UIButton!) {
+    @objc private func signIn(sender: UIButton!) {
         if let login = loginTextField.text, let password = passwordTextField.text {
             if !login.isEmpty && !password.isEmpty {
                 credentialsDelegate?.passCredentials(login, password)
@@ -204,7 +211,7 @@ final class ProfileView: UIView {
     }
     
     // MARK: - Sign out selector
-    @objc func signOut(sender: UIButton!) {
+    @objc private func signOut(sender: UIButton!) {
         credentialsDelegate?.removeCredentials()
         reloadDelegate?.resetView()
     }

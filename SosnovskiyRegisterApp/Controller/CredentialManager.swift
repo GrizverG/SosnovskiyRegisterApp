@@ -33,7 +33,7 @@ final class CredentialManager {
 }
 
 // MARK: - Credential saving delegate
-extension CredentialManager: saveCredentialsDelegate {
+extension CredentialManager: SaveCredentialsDelegate {
     func passCredentials(_ login: String, _ password: String) {
         UserDefaults.standard.set(login, forKey: Keys.loginKey)
         UserDefaults.standard.set(password, forKey: Keys.passwordKey)
